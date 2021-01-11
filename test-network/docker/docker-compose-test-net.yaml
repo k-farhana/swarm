@@ -45,9 +45,9 @@ services:
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric
     command: orderer
     volumes:
-      - ../system-genesis-block/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
-      - ../organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp:/var/hyperledger/orderer/msp
-      - ../organizations/ordererOrganizations/example.com/orderers/orderer.example.com/tls/:/var/hyperledger/orderer/tls
+      - /home/ubuntu/hlf-docker-swarm/test-network/system-genesis-block/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
+      - /home/ubuntu/hlf-docker-swarm/test-network/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp:/var/hyperledger/orderer/msp
+      - /home/ubuntu/hlf-docker-swarm/test-network/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/tls/:/var/hyperledger/orderer/tls
       - ordererexamplecom:/var/hyperledger/production/orderer
     ports:
       - 7050:7050
@@ -79,9 +79,9 @@ services:
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric
     command: orderer
     volumes:
-      - ../system-genesis-block/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
-      - ../organizations/ordererOrganizations/example.com/orderers/orderer2.example.com/msp:/var/hyperledger/orderer/msp
-      - ../organizations/ordererOrganizations/example.com/orderers/orderer2.example.com/tls/:/var/hyperledger/orderer/tls
+      - /home/ubuntu/hlf-docker-swarm/test-network/system-genesis-block/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
+      - /home/ubuntu/hlf-docker-swarm/test-network/organizations/ordererOrganizations/example.com/orderers/orderer2.example.com/msp:/var/hyperledger/orderer/msp
+      - /home/ubuntu/hlf-docker-swarm/test-network/organizations/ordererOrganizations/example.com/orderers/orderer2.example.com/tls/:/var/hyperledger/orderer/tls
       - orderer2examplecom:/var/hyperledger/production/orderer
     ports:
       - 8050:7050
@@ -114,9 +114,9 @@ services:
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric
     command: orderer
     volumes:
-      - ../system-genesis-block/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
-      - ../organizations/ordererOrganizations/example.com/orderers/orderer3.example.com/msp:/var/hyperledger/orderer/msp
-      - ../organizations/ordererOrganizations/example.com/orderers/orderer3.example.com/tls/:/var/hyperledger/orderer/tls
+      - /home/ubuntu/hlf-docker-swarm/test-network/system-genesis-block/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
+      - /home/ubuntu/hlf-docker-swarm/test-network/organizations/ordererOrganizations/example.com/orderers/orderer3.example.com/msp:/var/hyperledger/orderer/msp
+      - /home/ubuntu/hlf-docker-swarm/test-network/organizations/ordererOrganizations/example.com/orderers/orderer3.example.com/tls/:/var/hyperledger/orderer/tls
       - orderer3examplecom:/var/hyperledger/production/orderer
     ports:
       - 9050:7050
@@ -149,9 +149,9 @@ services:
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric
     command: orderer
     volumes:
-      - ../system-genesis-block/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
-      - ../organizations/ordererOrganizations/example.com/orderers/orderer4.example.com/msp:/var/hyperledger/orderer/msp
-      - ../organizations/ordererOrganizations/example.com/orderers/orderer4.example.com/tls/:/var/hyperledger/orderer/tls
+      - /home/ubuntu/hlf-docker-swarm/test-network/system-genesis-block/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
+      - /home/ubuntu/hlf-docker-swarm/test-network/organizations/ordererOrganizations/example.com/orderers/orderer4.example.com/msp:/var/hyperledger/orderer/msp
+      - /home/ubuntu/hlf-docker-swarm/test-network/organizations/ordererOrganizations/example.com/orderers/orderer4.example.com/tls/:/var/hyperledger/orderer/tls
       - orderer4examplecom:/var/hyperledger/production/orderer
     ports:
       - 10050:7050
@@ -184,9 +184,9 @@ services:
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric
     command: orderer
     volumes:
-      - ../system-genesis-block/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
-      - ../organizations/ordererOrganizations/example.com/orderers/orderer5.example.com/msp:/var/hyperledger/orderer/msp
-      - ../organizations/ordererOrganizations/example.com/orderers/orderer5.example.com/tls/:/var/hyperledger/orderer/tls
+      - /home/ubuntu/hlf-docker-swarm/test-network/system-genesis-block/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
+      - /home/ubuntu/hlf-docker-swarm/test-network/organizations/ordererOrganizations/example.com/orderers/orderer5.example.com/msp:/var/hyperledger/orderer/msp
+      - /home/ubuntu/hlf-docker-swarm/test-network/organizations/ordererOrganizations/example.com/orderers/orderer5.example.com/tls/:/var/hyperledger/orderer/tls
       - orderer5examplecom:/var/hyperledger/production/orderer
     ports:
       - 11050:7050
@@ -196,6 +196,10 @@ services:
           - orderer5.example.com
 
   peer0org1examplecom:
+    deploy:
+      placement:
+        constraints:
+          - node.labels.name == manager
     container_name: peer0.org1.example.com
     image: hyperledger/fabric-peer:2.2
     environment:
@@ -227,8 +231,8 @@ services:
       - CORE_PEER_TLS_CLIENTAUTHREQUIRED=false
     volumes:
       - /var/run/:/host/var/run/
-      - ../organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/msp:/etc/hyperledger/fabric/msp
-      - ../organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls:/etc/hyperledger/fabric/tls
+      - /home/ubuntu/hlf-docker-swarm/test-network/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/msp:/etc/hyperledger/fabric/msp
+      - /home/ubuntu/hlf-docker-swarm/test-network/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls:/etc/hyperledger/fabric/tls
       - peer0org1examplecom:/var/hyperledger/production
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
     command: peer node start
@@ -240,6 +244,10 @@ services:
           - peer0.org1.example.com
 
   peer0org2examplecom:
+    deploy:
+      placement:
+        constraints:
+          - node.labels.name == worker1
     container_name: peer0.org2.example.com
     image: hyperledger/fabric-peer:2.2
     environment:
@@ -271,8 +279,8 @@ services:
       - CORE_PEER_TLS_CLIENTAUTHREQUIRED=false
     volumes:
       - /var/run/:/host/var/run/
-      - ../organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/msp:/etc/hyperledger/fabric/msp
-      - ../organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls:/etc/hyperledger/fabric/tls
+      - /home/ubuntu/hlf-docker-swarm/test-network/organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/msp:/etc/hyperledger/fabric/msp
+      - /home/ubuntu/hlf-docker-swarm/test-network/organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls:/etc/hyperledger/fabric/tls
       - peer0org2examplecom:/var/hyperledger/production
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
     command: peer node start
@@ -284,6 +292,10 @@ services:
           - peer0.org2.example.com
 
   peer0org3examplecom:
+    deploy:
+      placement:
+        constraints:
+          - node.labels.name == worker2
     container_name: peer0.org3.example.com
     image: hyperledger/fabric-peer:2.2
     environment:
@@ -315,8 +327,8 @@ services:
       - CORE_PEER_TLS_CLIENTAUTHREQUIRED=false
     volumes:
       - /var/run/:/host/var/run/
-      - ../organizations/peerOrganizations/org3.example.com/peers/peer0.org3.example.com/msp:/etc/hyperledger/fabric/msp
-      - ../organizations/peerOrganizations/org3.example.com/peers/peer0.org3.example.com/tls:/etc/hyperledger/fabric/tls
+      - /home/ubuntu/docker-swarm/test-network/organizations/peerOrganizations/org3.example.com/peers/peer0.org3.example.com/msp:/etc/hyperledger/fabric/msp
+      - /home/ubuntu/docker-swarm/test-network/organizations/peerOrganizations/org3.example.com/peers/peer0.org3.example.com/tls:/etc/hyperledger/fabric/tls
       - peer0org3examplecom:/var/hyperledger/production
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
     command: peer node start
