@@ -3,7 +3,7 @@
 source scriptUtils.sh
 export PATH=${PWD}/../bin:$PATH
 function createOrg1() {
-
+  mkdir channel-artifacts
   infoln "Enroll the CA admin"
   sleep 2
   mkdir -p organizations/peerOrganizations/org1.example.com/
@@ -96,7 +96,7 @@ function createOrg1() {
 }
 
 function createOrg2() {
-
+  mkdir channel-artifacts
   mkdir -p organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/
   infoln "Enroll the CA admin"
   sleep 2
@@ -192,6 +192,7 @@ function createOrg2() {
 
 
 function createOrg3() {
+  mkdir channel-artifacts
   mkdir -p organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/
   infoln "Enroll the CA admin"
   sleep 2
