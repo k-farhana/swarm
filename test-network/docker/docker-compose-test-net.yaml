@@ -27,7 +27,7 @@ services:
         constraints:
           - node.labels.name == manager
     container_name: orderer.example.com
-    image: hyperledger/fabric-orderer:2.2
+    image: hyperledger/fabric-orderer:2.3
     environment:
       - FABRIC_LOGGING_SPEC=INFO
       - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
@@ -65,7 +65,7 @@ services:
         constraints:
           - node.labels.name == manager
     container_name: orderer2.example.com
-    image: hyperledger/fabric-orderer:2.2
+    image: hyperledger/fabric-orderer:2.3
     environment:
       - FABRIC_LOGGING_SPEC=INFO
       - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
@@ -104,7 +104,7 @@ services:
         constraints:
           - node.labels.name == manager
     container_name: orderer3.example.com
-    image: hyperledger/fabric-orderer:2.2
+    image: hyperledger/fabric-orderer:2.3
     environment:
       - FABRIC_LOGGING_SPEC=INFO
       - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
@@ -143,7 +143,7 @@ services:
         constraints:
           - node.labels.name == manager
     container_name: orderer4.example.com
-    image: hyperledger/fabric-orderer:2.2
+    image: hyperledger/fabric-orderer:2.3
     environment:
       - FABRIC_LOGGING_SPEC=INFO
       - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
@@ -182,7 +182,7 @@ services:
         constraints:
           - node.labels.name == manager
     container_name: orderer5.example.com
-    image: hyperledger/fabric-orderer:2.2
+    image: hyperledger/fabric-orderer:2.3
     environment:
       - FABRIC_LOGGING_SPEC=INFO
       - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
@@ -221,7 +221,7 @@ services:
         constraints:
           - node.labels.name == manager
     container_name: peer0.org1.example.com
-    image: hyperledger/fabric-peer:2.2
+    image: hyperledger/fabric-peer:2.3
     environment:
       #Generic peer variables
       - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
@@ -269,7 +269,7 @@ services:
         constraints:
           - node.labels.name == worker1
     container_name: peer0.org2.example.com
-    image: hyperledger/fabric-peer:2.2
+    image: hyperledger/fabric-peer:2.3
     environment:
       #Generic peer variables
       - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
@@ -317,7 +317,7 @@ services:
         constraints:
           - node.labels.name == worker2
     container_name: peer0.org3.example.com
-    image: hyperledger/fabric-peer:2.2
+    image: hyperledger/fabric-peer:2.3
     environment:
       #Generic peer variables
       - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock

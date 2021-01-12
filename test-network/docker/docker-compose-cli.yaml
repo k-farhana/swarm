@@ -8,7 +8,7 @@ networks:
 services:
   cliOrg1:
     container_name: cli
-    image: hyperledger/fabric-tools:2.2
+    image: hyperledger/fabric-tools:2.3
     tty: true
     stdin_open: true
     deploy:
@@ -40,12 +40,15 @@ services:
       - /home/ubuntu/hlf-docker-swarm/test-network/organizations:/opt/gopath/src/github.com/hyperledger/fabric/peer/organizations/
       - /home/ubuntu/hlf-docker-swarm/test-network/scripts:/opt/gopath/src/github.com/hyperledger/fabric/peer/scripts/
       - /home/ubuntu/hlf-docker-swarm/test-network/channel-artifacts:/opt/gopath/src/github.com/hyperledger/fabric/peer/channel-artifacts
+    
     networks:
-      - test
+      test:
+        aliases:
+          - cliOrg1.example.com
 
   cliOrg2:
     container_name: cli
-    image: hyperledger/fabric-tools:2.2
+    image: hyperledger/fabric-tools:2.3
     tty: true
     stdin_open: true
     deploy:
@@ -78,11 +81,13 @@ services:
       - /home/ubuntu/hlf-docker-swarm/test-network/scripts:/opt/gopath/src/github.com/hyperledger/fabric/peer/scripts/
       - /home/ubuntu/hlf-docker-swarm/test-network/channel-artifacts:/opt/gopath/src/github.com/hyperledger/fabric/peer/channel-artifacts
     networks:
-      - test
+      test:
+        aliases:
+          - cliOrg2.example.com
 
   cliOrg3:
     container_name: cli
-    image: hyperledger/fabric-tools:2.2
+    image: hyperledger/fabric-tools:2.3
     tty: true
     stdin_open: true
     deploy:
@@ -115,4 +120,6 @@ services:
       - /home/ubuntu/hlf-docker-swarm/test-network/scripts:/opt/gopath/src/github.com/hyperledger/fabric/peer/scripts/
       - /home/ubuntu/hlf-docker-swarm/test-network/channel-artifacts:/opt/gopath/src/github.com/hyperledger/fabric/peer/channel-artifacts
     networks:
-      - test
+      test:
+        aliases:
+          - cliOrg3.example.com
