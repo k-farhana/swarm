@@ -121,28 +121,6 @@ createChannelTx
 infoln "Generating anchor peer update transactions"
 createAncorPeerTx
 
-# FABRIC_CFG_PATH=$PWD/../config/
-# infoln "Sleeping for 10s"
-# sleep 10
-# ## Create channel
-# infoln "Creating channel ${CHANNEL_NAME}"
-# createChannel
 
-# ## Join all the peers to the channel
-# infoln "Join Org1 peers to the channel..."
-# joinChannel 1
-# infoln "Join Org2 peers to the channel..."
-# joinChannel 2
-# infoln "Join Org3 peers to the channel..."
-# joinChannel 3
-
-# ## Set the anchor peers for each org in the channel
-# infoln "Updating anchor peers for org1..."
-# updateAnchorPeers 1
-# infoln "Updating anchor peers for org2..."
-# updateAnchorPeers 2
-# infoln "Updating anchor peers for org3..."
-# updateAnchorPeers 3
-# successln "Channel successfully joined"
 
 exit 0

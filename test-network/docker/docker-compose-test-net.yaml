@@ -22,6 +22,10 @@ networks:
 
 services:
   ordererexamplecom:
+    deploy:
+      placement:
+        constraints:
+          - node.labels.name == manager
     container_name: orderer.example.com
     image: hyperledger/fabric-orderer:2.2
     environment:
@@ -56,6 +60,10 @@ services:
         aliases:
           - orderer.example.com
   orderer2examplecom:
+    deploy:
+      placement:
+        constraints:
+          - node.labels.name == manager
     container_name: orderer2.example.com
     image: hyperledger/fabric-orderer:2.2
     environment:
@@ -91,6 +99,10 @@ services:
           - orderer2.example.com
 
   orderer3examplecom:
+    deploy:
+      placement:
+        constraints:
+          - node.labels.name == manager
     container_name: orderer3.example.com
     image: hyperledger/fabric-orderer:2.2
     environment:
@@ -126,6 +138,10 @@ services:
           - orderer3.example.com
 
   orderer4examplecom:
+    deploy:
+      placement:
+        constraints:
+          - node.labels.name == manager
     container_name: orderer4.example.com
     image: hyperledger/fabric-orderer:2.2
     environment:
@@ -161,6 +177,10 @@ services:
           - orderer4.example.com
 
   orderer5examplecom:
+    deploy:
+      placement:
+        constraints:
+          - node.labels.name == manager
     container_name: orderer5.example.com
     image: hyperledger/fabric-orderer:2.2
     environment:
@@ -327,8 +347,8 @@ services:
       - CORE_PEER_TLS_CLIENTAUTHREQUIRED=false
     volumes:
       - /var/run/:/host/var/run/
-      - /home/ubuntu/docker-swarm/test-network/organizations/peerOrganizations/org3.example.com/peers/peer0.org3.example.com/msp:/etc/hyperledger/fabric/msp
-      - /home/ubuntu/docker-swarm/test-network/organizations/peerOrganizations/org3.example.com/peers/peer0.org3.example.com/tls:/etc/hyperledger/fabric/tls
+      - /home/ubuntu/hlf-docker-swarm/test-network/organizations/peerOrganizations/org3.example.com/peers/peer0.org3.example.com/msp:/etc/hyperledger/fabric/msp
+      - /home/ubuntu/hlf-docker-swarm/test-network/organizations/peerOrganizations/org3.example.com/peers/peer0.org3.example.com/tls:/etc/hyperledger/fabric/tls
       - peer0org3examplecom:/var/hyperledger/production
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
     command: peer node start

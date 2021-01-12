@@ -1,11 +1,11 @@
 #!/bin/bash
 
 source scriptUtils.sh
-
+export PATH=${PWD}/../bin:$PATH
 function createOrg1() {
 
   infoln "Enroll the CA admin"
-  sleep 10
+  sleep 2
   mkdir -p organizations/peerOrganizations/org1.example.com/
 
   export FABRIC_CA_CLIENT_HOME=${PWD}/organizations/peerOrganizations/org1.example.com/
@@ -97,8 +97,9 @@ function createOrg1() {
 
 function createOrg2() {
 
+  mkdir -p organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/
   infoln "Enroll the CA admin"
-  sleep 10
+  sleep 2
   mkdir -p organizations/peerOrganizations/org2.example.com/
 
   export FABRIC_CA_CLIENT_HOME=${PWD}/organizations/peerOrganizations/org2.example.com/
@@ -191,9 +192,9 @@ function createOrg2() {
 
 
 function createOrg3() {
-
+  organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/
   infoln "Enroll the CA admin"
-  sleep 10
+  sleep 2
   mkdir -p organizations/peerOrganizations/org3.example.com/
 
   export FABRIC_CA_CLIENT_HOME=${PWD}/organizations/peerOrganizations/org3.example.com/
@@ -289,7 +290,7 @@ function createOrg3() {
 function createOrderer() {
 
   infoln "Enroll the CA admin"
-  sleep 10
+  sleep 2
   mkdir -p organizations/ordererOrganizations/example.com
 
   export FABRIC_CA_CLIENT_HOME=${PWD}/organizations/ordererOrganizations/example.com
@@ -381,10 +382,10 @@ function createOrderer() {
   mkdir -p organizations/ordererOrganizations/example.com/users/Admin@example.com
 
 
-# -----------------------------------------------------------------------
-#  Orderer 2
+  # -----------------------------------------------------------------------
+  #  Orderer 2
 
-mkdir -p organizations/ordererOrganizations/example.com/orderers/orderer2.example.com
+  mkdir -p organizations/ordererOrganizations/example.com/orderers/orderer2.example.com
 
   infoln "Generate the orderer2 msp"
   set -x
@@ -410,10 +411,10 @@ mkdir -p organizations/ordererOrganizations/example.com/orderers/orderer2.exampl
 
 
 
-# -----------------------------------------------------------------------
-#  Orderer 3
+  # -----------------------------------------------------------------------
+  #  Orderer 3
 
-mkdir -p organizations/ordererOrganizations/example.com/orderers/orderer3.example.com
+  mkdir -p organizations/ordererOrganizations/example.com/orderers/orderer3.example.com
 
   infoln "Generate the orderer3 msp"
   set -x
@@ -440,10 +441,10 @@ mkdir -p organizations/ordererOrganizations/example.com/orderers/orderer3.exampl
 
 
 
-# -----------------------------------------------------------------------
-#  Orderer 4
+  # -----------------------------------------------------------------------
+  #  Orderer 4
 
-mkdir -p organizations/ordererOrganizations/example.com/orderers/orderer4.example.com
+  mkdir -p organizations/ordererOrganizations/example.com/orderers/orderer4.example.com
 
   infoln "Generate the orderer4 msp"
   set -x
@@ -470,10 +471,10 @@ mkdir -p organizations/ordererOrganizations/example.com/orderers/orderer4.exampl
 
 
 
-# -----------------------------------------------------------------------
-#  Orderer 5
+  # -----------------------------------------------------------------------
+  #  Orderer 5
 
-mkdir -p organizations/ordererOrganizations/example.com/orderers/orderer5.example.com
+  mkdir -p organizations/ordererOrganizations/example.com/orderers/orderer5.example.com
 
   infoln "Generate the orderer5 msp"
   set -x
