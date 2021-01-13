@@ -17,7 +17,7 @@ docker network create --driver=overlay --attachable test
 
 docker stack deploy -c explorer/docker-compose.yaml hlf
 
-
+docker node update --label-add name=manager manager
 
 
 # instruction
@@ -32,7 +32,7 @@ export FABRIC_CFG_PATH=${PWD}/configtx
 7. createOrg3 in worker2
 8. createOrderer in manager
 9. move org2 and org3 folder to manager
-10. create genesis block ./script/createGenesis.sh
+10. create genesis block ./scripts/createGenesis.sh
 
 
 
@@ -41,7 +41,7 @@ export FABRIC_CFG_PATH=${PWD}/configtx
 
 
 # deploy peers and orderer
-1. docker stack deploy -c docker/docker-compose-test-net.yaml hlf
+1. docker stack deploy -c docker/docker-compose-test-net.yaml -c docker/docker-compose-couch.yaml hlf
 2. make sure the channel artifacts are present on manager
 
 # CLI
@@ -49,3 +49,22 @@ export FABRIC_CFG_PATH=${PWD}/configtx
 2. docker stack deploy -c docker/docker-compose-cli.yaml hlf
 
 
+create channel 
+join channel 
+update anchor peer
+
+package cc
+copy cc to other host
+install cc in all orgs
+approve in all orgs
+
+commit in any org
+
+invoke
+
+
+geneate ccp
+
+build image
+
+docker
