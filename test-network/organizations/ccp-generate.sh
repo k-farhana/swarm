@@ -27,7 +27,7 @@ function yaml_ccp {
 }
 
 
-function Org1CPP{
+function Org1CPP {
     ORG=1
     P0PORT=7051
     CAPORT=7054
@@ -39,7 +39,7 @@ function Org1CPP{
 
 }
 
-function Org2CPP{
+function Org2CPP {
     ORG=2
     P0PORT=9051
     CAPORT=8054
@@ -51,7 +51,7 @@ function Org2CPP{
 
 }
 
-function Org3CPP{
+function Org3CPP {
 
     ORG=3
     P0PORT=11051
