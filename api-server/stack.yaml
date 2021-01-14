@@ -7,6 +7,10 @@ networks:
 
 services:
   nodeapp:
+    deploy:
+      placement:
+        constraints:
+          - node.labels.name == manager
     image: aditya/node-app:latest
     ports:
       - 4000:4000

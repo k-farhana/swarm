@@ -32,6 +32,10 @@ services:
           - explorerdb.mynetwork.com
 
   explorermynetworkcom:
+    deploy:
+      placement:
+       constraints:
+         - node.labels.name == manager
     image: hyperledger/explorer:latest
     container_name: explorer.mynetwork.com
     hostname: explorer.mynetwork.com

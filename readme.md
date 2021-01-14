@@ -62,7 +62,7 @@ commit in any org
 
 invoke
 
-
+source  ./organizations/ccp-generate.sh
 geneate ccp
 
 build image
