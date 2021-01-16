@@ -1,5 +1,6 @@
 #!/bin/bash
-
+export PATH=${PWD}/../bin:$PATH
+export FABRIC_CFG_PATH=${PWD}/configtx
 source scriptUtils.sh
 
 CHANNEL_NAME="$1"

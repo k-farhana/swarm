@@ -37,7 +37,7 @@ export FABRIC_CFG_PATH=${PWD}/configtx
 
 
 # create channel and anchor peer
-1. ./scripts/createChannel.sh
+1. ./scripts/createChannelTx.sh
 
 
 # deploy peers and orderer
