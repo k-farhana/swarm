@@ -1,28 +1,29 @@
-const { Gateway, Wallets } = require("fabric-network");
+const { getCCP } = require("./buildCCP");
+const { Wallets, Gateway } = require('fabric-network');
 const path = require("path");
-const { buildWallet } = require("./AppUtils.js");
-const { getCCP } = require("./buildCCP.js");
 const walletPath = path.join(__dirname, "wallet");
+const {buildWallet} =require('./AppUtils')
 exports.tx = async (request) => {
+    let org = request.org;
+    let num = Number(org.match(/\d/g).join(""));
+    const ccp = getCCP(num);
 
-  let org = request.org;
-  let num = Number(org.match(/\d/g).join(""));
-  const ccp = getCCP(num);
-  const wallet = await buildWallet(Wallets, walletPath);
-  const gateway = new Gateway();
+    const wallet = await buildWallet(Wallets, walletPath);
 
-  await gateway.connect(ccp, {
-    wallet,
-    identity: request.userId,
-    discovery: { enabled: true, asLocalhost: false },
-  });
+    const gateway = new Gateway();
 
-  const network = await gateway.getNetwork(request.channelName);
+    await gateway.connect(ccp, {
+        wallet,
+        identity: request.userId,
+        discovery: { enabled: true, asLocalhost: false } // using asLocalhost as this gateway is using a fabric network deployed locally
+    });
 
-  const contract = network.getContract(request.chaincodeName);
-  let data = Object.values(request.data);
-  let result = await contract.submitTransaction(...data);
-  console.log(result.toString())
-  return result;
+    // Build a network instance based on the channel where the smart contract is deployed
+    const network = await gateway.getNetwork(request.channelName);
+
+    // Get the contract from the network.
+    const contract = network.getContract(request.chaincodeName);
+    let data = Object.values(request.data);
+    let result = await contract.submitTransaction(...data);
+    return result;
 }
-

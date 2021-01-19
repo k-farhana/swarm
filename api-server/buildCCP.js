@@ -1,10 +1,8 @@
-const { buildCCPOrg2,buildCCPOrg1,buildCCPOrg3 } = require("./AppUtils")
+const { buildCCPOrg1 ,buildCCPOrg2,buildCCPOrg3} = require("./AppUtils");
 
-exports.getCCP = (org1) => {
-    console.log(typeof org1)
+exports.getCCP = (org) => {
     let ccp;
-    switch (org1) {
-
+    switch (org) {
         case 1:
             ccp = buildCCPOrg1();
             break;

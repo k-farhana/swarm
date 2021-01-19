@@ -1,18 +1,17 @@
-version: "3"
+version : "3"
 
 networks:
   test:
     external:
       name: test
-
-services:
+services: 
   nodeapp:
     deploy:
       placement:
         constraints:
-          - node.labels.name == manager
+            - node.labels.name == manager
     image: aditya/node-app:latest
-    ports:
+    ports :
       - 4000:4000
     networks:
       test:
